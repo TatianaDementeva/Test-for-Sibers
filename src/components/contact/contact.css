@@ -92,3 +92,46 @@
 .info__data {
     font-size: 2vmin;
 }
+
+.input-data {
+    width: 40vw;
+}
+
+.buttons {
+    display: -webkit-flex; 
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    padding: 1vmin;
+}
+
+.buttons_style {
+    padding: 1vmin;
+    
+    font-weight: bold;
+    color: white;
+
+    border-radius: 6%;
+
+    border: none;
+    cursor: pointer;
+}
+
+.buttons__edit {
+    background: #40c781;
+    box-shadow: 0 -3px rgb(53,167,110) inset;
+}
+.buttons__edit:hover {
+    background: rgb(53,167,110);
+}
+
+.buttons__cancel {
+    background: #c84141;
+    box-shadow: 0 -3px rgb(167, 53, 53) inset;
+}
+
+.buttons__cancel:hover {
+    background: rgb(167, 53, 53);
+}
