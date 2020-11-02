@@ -2,11 +2,13 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import './contact.css';
 import userIcon from '../../assets/user.svg';
+import edit from '../../assets/edit.svg';
 
 export default class Contact extends Component{
     state = {
         user: null,
-        showAllInfo: false
+        showAllInfo: false,
+        edit: false
     }
     componentDidMount(){
         //const user = this.props.user;
@@ -28,26 +30,38 @@ export default class Contact extends Component{
         console.log('did mount');
     }
 
-    showAllInfo = () => {
-        console.log('show all');
-        const {showAllInfo} = this.state;
-        this.setState({showAllInfo: !showAllInfo});
+    clickOnContact = (event) => {
+        const target = event.target;
+        if(target.classList.contains('contact__edit') || target.classList.contains('edit-icon')){
+            console.log('edit');
+            this.setState({edit: true});
+        }else{
+            console.log('show all');
+            const {showAllInfo} = this.state;
+            this.setState({showAllInfo: !showAllInfo});
+        }
+
     }
+
     render(){
         const user = this.props.user;
         const {showAllInfo} = this.state;
         //const user = this.state.user;
-        console.log('user', user);
+        //console.log('user', user);
         //var avatar = user.avatar;
         // axios.get(user.avatar).then(result => avatar=result);
         // console.log('avatar', avatar);
         return(
             <>
-            <div className='contact' id={user.id} onClick={this.showAllInfo}>
+            <div className='contact' id={user.id} onClick={this.clickOnContact}>
                 <img src={user.avatar} alt="avatar" className='contact__avatar' />
                 <div className='contact__name'>
                     {user.name}
                 </div>
+                <div className='contact__edit'>
+                    <img src={edit} alt="edit" className='edit-icon' />
+                </div>
+
             </div>
             {showAllInfo && (
                 <div className='contact-info'>

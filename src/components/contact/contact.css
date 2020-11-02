@@ -4,7 +4,7 @@
     align-items: center;
 
     width: 70vw;
-    padding: 1vmin;
+    padding: 3vmin;
     margin: 2vh auto 0;
 
     border-width: 2px 0;
@@ -18,11 +18,15 @@
     cursor: pointer;
 }
 
+.contact:hover {
+    background: linear-gradient(#d1e0e0, #f0f5f5) #d1e0e0;
+}
+
 .contact__avatar {
     height: calc(20px + 5vmin);
     width: calc(20px + 5vmin);
 
-    margin: 1vmin 2vmin;
+    margin: 1vmin 2vmin 1vmin 0;
 
     border-radius: 50%;
     border: 2px solid #85adad;
@@ -31,6 +35,22 @@
 .contact__name {
     font-size: 3vmin;
     font-weight: bold;
+}
+
+.contact__edit {
+    align-items: center;
+    margin-left: auto;
+    padding: 1vmin;
+    border-radius: 6%;
+}
+
+.contact__edit:hover {
+    background-color:  rgba(133, 173, 173, 0.4);
+}
+
+.edit-icon {
+    height: calc(5px + 2vmin);
+    width: calc(5px + 2vmin);
 }
 
 .contact-info {
