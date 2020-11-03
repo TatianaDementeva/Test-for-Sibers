@@ -1,9 +1,18 @@
 import React, {Component} from 'react';
 import Contact from '../contact/contact';
+import './contact-list.css';
+import filterIcon from '../../assets/filter.svg';
 
 export default class ContactList extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            order: 'asc',
+            users: JSON.parse(localStorage.getItem('users'))
+        }
+    }
 
-    compareAlphabetically(a, b, order){
+    compareAlphabetically = (a, b, order) => {
         if (a.name > b.name)
             return (order === 'asc') ? 1 : -1;
         if (a.name < b.name)
@@ -11,15 +20,56 @@ export default class ContactList extends Component {
         // a=b
         return 0;
     }
-    render(){
-        const users = JSON.parse(localStorage.getItem('users'));
-        console.log(users[0].name);
 
-        //sort users alphabetically ascending or descending
-        users.sort((a, b) => this.compareAlphabetically(a, b, 'asc'));
+    onChangeOrder = () => {
+        const order = this.state.order;
+
+        if (order === 'asc'){
+            this.setState({order: 'desc'})
+        } else {
+            this.setState({order: 'asc'})
+        }
+    }
+    
+    updateUsers = () => {
+        const users = JSON.parse(localStorage.getItem('users'));
+        this.setState({users: users});
+    }
+
+    createClassName = (firstClass) => {
+        const order = this.state.order;
+        var className;
+
+        if (order === 'asc'){
+            className = firstClass;
+        }
+        if (order === 'desc'){
+            className = `selected ${firstClass}`
+        }
+        return className;
+    }
+
+    render(){
+        const {order, users} = this.state;
+        users.sort((a, b) => this.compareAlphabetically(a, b, order));
+        const className = this.createClassName('sort-icon');
+
         return(
             <div className='contact-list'>
-                {users.map(element => <Contact user={element} key={element.id} />)}
+                <div className='contact-list__sort' >
+                    <img 
+                        src={filterIcon} 
+                        alt="sort" 
+                        className={className} 
+                        onClick={this.onChangeOrder}  
+                    />
+                </div>
+                {users.map(user => <Contact 
+                                        user={user} 
+                                        key={user.id} 
+                                        updateUsers={this.updateUsers} 
+                                    />)
+                }
             </div>
         )
     }

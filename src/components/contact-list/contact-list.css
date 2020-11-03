@@ -1,4 +1,19 @@
 .contact-list{
     width: 80vw;
+    margin: 0 auto 3vmin;
+}
+.contact-list__sort {
+    width: 70vw;
+    padding: 1vmin;
     margin: 0 auto;
+}
+.sort-icon {
+    height: calc(5px + 3vmin);
+    width: calc(5px + 3vmin);
+
+    cursor: pointer;
+}
+
+.selected {
+    background-color:  rgba(133, 173, 173, 0.4);
 }
